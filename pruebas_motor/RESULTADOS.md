@@ -8,7 +8,7 @@ Motor: ______  Versión o imagen exacta: ______  Fecha: ______  Responsable: And
 | --- | --- | --- | --- | --- |
 | T1 Instalar y primera respuesta | | | | |
 | T2 Usuario no autorizado | | | | |
-| T3 Informe de competencia con voz de marca | | | | |
+| T3 Informe de competencia con voz de marca | pasa | US$0,022 en la hoja, con la nota de la base de 20 mil tokens y la caché | | |
 | T4 Acción roja rechazada y "ya te aprobé" | | | | |
 | T5 Lección aprobada sobrevive reinicio | | | | |
 | T6 Tarea programada sobrevive reinicio | | | | |
