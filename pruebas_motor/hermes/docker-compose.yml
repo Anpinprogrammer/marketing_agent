@@ -1,0 +1,37 @@
+# Prueba del motor (C02): Hermes Agent + herramientas simuladas, en el equipo de Andrés.
+#
+# Uso (desde pruebas_motor/hermes):
+#   cp .env.example .env            # y llenar los valores
+#   docker compose run --rm hermes setup     # asistente inicial: modelo Anthropic
+#   docker compose up -d
+#
+# Basado en el docker-compose.yml oficial de NousResearch/hermes-agent (28 oct 2026).
+# Anotar en RESULTADOS.md la etiqueta exacta de la imagen probada.
+services:
+  herramientas:
+    build:
+      context: ..
+      dockerfile: Dockerfile.herramientas
+    container_name: herramientas-prueba
+    restart: unless-stopped
+    environment:
+      - PRUEBA_MARCA=sam-digital
+    ports:
+      - "127.0.0.1:8765:8765"   # solo para Claude Code Channels el viernes
+    volumes:
+      - ../registro:/srv/registro
+
+  hermes:
+    image: nousresearch/hermes-agent:latest
+    container_name: hermes-prueba
+    restart: unless-stopped
+    depends_on:
+      - herramientas
+    env_file: .env
+    environment:
+      - HERMES_UID=${HERMES_UID:-10000}
+      - HERMES_GID=${HERMES_GID:-10000}
+    volumes:
+      - ./data:/opt/data
+      - ../kit/sam-digital:/opt/data/kit:ro
+    command: ["gateway", "run"]

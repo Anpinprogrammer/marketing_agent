@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "marketing-agent"
+version = "0.1.0"
+description = "Agente de marketing de SAM Digital"
+requires-python = ">=3.12"
+dependencies = ["mcp>=2.3,<3"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.6", "mypy>=1.11"]
+
+[tool.setuptools.packages.find]
+include = ["pruebas_motor*"]
+
+[tool.setuptools.package-data]
+pruebas_motor = ["paginas/*.html", "kit/**/*.md"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

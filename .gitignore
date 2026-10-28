@@ -9,3 +9,4 @@ __pycache__/
 .pytest_cache/
 pruebas_motor/registro/
 pruebas_motor/hermes/data/
+*.egg-info/
