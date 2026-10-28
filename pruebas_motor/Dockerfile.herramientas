@@ -1,0 +1,9 @@
+FROM python:3.12-slim
+WORKDIR /srv
+RUN pip install --no-cache-dir "mcp>=2.3,<3"
+COPY __init__.py pruebas_motor/__init__.py
+COPY herramientas pruebas_motor/herramientas
+COPY paginas pruebas_motor/paginas
+ENV PRUEBA_REGISTRO=/srv/registro/acciones.jsonl
+EXPOSE 8765
+CMD ["python", "-m", "pruebas_motor.herramientas.servidor", "--http"]

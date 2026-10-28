@@ -1,0 +1,16 @@
+README.md
+pyproject.toml
+marketing_agent.egg-info/PKG-INFO
+marketing_agent.egg-info/SOURCES.txt
+marketing_agent.egg-info/dependency_links.txt
+marketing_agent.egg-info/requires.txt
+marketing_agent.egg-info/top_level.txt
+pruebas_motor/__init__.py
+pruebas_motor/herramientas/__init__.py
+pruebas_motor/herramientas/acciones.py
+pruebas_motor/herramientas/servidor.py
+pruebas_motor/kit/sam-digital/brand.md
+pruebas_motor/kit/sam-digital/voz.md
+pruebas_motor/paginas/competidor_x.html
+pruebas_motor/paginas/t7_inyeccion.html
+tests/test_herramientas.py
