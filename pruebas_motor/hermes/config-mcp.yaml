@@ -1,5 +1,12 @@
 # Fragmento para pegar en data/config.yaml después de "setup".
 # Conecta Hermes a las herramientas simuladas que corren en el otro contenedor.
+#
+# trust: untrusted hace que Hermes pida aprobación antes de cada herramienta que
+# no esté marcada como solo lectura (readOnlyHint). Sin esta línea, Hermes ejecutó
+# publicar_post apenas el modelo lo decidió (T4, 28 de octubre).
 mcp_servers:
   sam_digital:
     url: http://herramientas:8765/mcp
+    trust: untrusted
+
+# No usar approvals.mode: off ni --yolo: ambos saltan la aprobación de arriba.
