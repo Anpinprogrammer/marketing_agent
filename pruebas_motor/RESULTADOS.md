@@ -56,8 +56,29 @@ En la prueba se hizo copiando la carpeta y cambiando nombres con `sed`. La plant
 
 | | E1 | E2 | E3 | E4 | E5 | E6 | E7 |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Estado | pasa | pasa con configuración | pendiente | pasa | pasa con configuración | pasa | pendiente |
-| Nota | T2 | T4 | Se probó por OpenRouter; falta verificar con llave de Anthropic Console | Memoria (T5) y tareas programadas (T6) sobreviven reinicio y mudanza de equipo | T5 | Lo pone el proveedor (límite de la llave), no Hermes. T8 | Licencia MIT (uso comercial permitido); falta revisar avisos de seguridad del repositorio |
+| Estado | pasa | pasa con configuración | pendiente | pasa | pasa con configuración | pasa | pasa con condiciones |
+| Nota | T2 | T4 | Se probó por OpenRouter; falta verificar con llave de Anthropic Console | Memoria (T5) y tareas programadas (T6) sobreviven reinicio y mudanza de equipo | T5 | Lo pone el proveedor (límite de la llave), no Hermes. T8 | Licencia MIT (uso comercial permitido). Avisos de seguridad revisados el 29 de octubre: ver sección siguiente |
+
+## Avisos de seguridad (E7)
+
+Revisión del 29 de octubre de 2026 en el [GitHub Advisory Database](https://github.com/advisories?query=hermes-agent): unas 35 entradas para hermes-agent, casi todas de severidad baja o moderada y sin revisar (generadas por VulDB). Las graves ya tienen versión corregida:
+
+| Aviso | Severidad | Qué es | Corregido en | ¿Nos afecta? |
+| --- | --- | --- | --- | --- |
+| [GHSA-w9gw-vgmg-q67h](https://github.com/advisories/GHSA-w9gw-vgmg-q67h) | Crítica | El catálogo de MCP incluido apunta a una rama que puede cambiar, no a un commit fijo | 0.19.0 | No usamos el catálogo: nuestro MCP es propio y por URL |
+| [GHSA-4pqm-j46f-795x](https://github.com/advisories/GHSA-4pqm-j46f-795x) | Alta | DNS rebinding en los WebSocket `/api/pty`, `/api/ws`, etc. | 0.16.0 | No exponemos puertos de Hermes |
+| [GHSA-rrm3-x23q-98qc](https://github.com/advisories/GHSA-rrm3-x23q-98qc) | Alta | Restricción de rutas insuficiente | 0.17.0 | Corregido si la imagen es ≥ 0.17.0 |
+
+Varias moderadas siguen sin corrección y el fabricante "no respondió" al aviso previo (por ejemplo, autenticación del adaptador de Discord, path traversal en el webhook, SSRF en la app de escritorio). Ninguna toca lo que usamos: Telegram por long polling, sin webhooks, sin Discord, sin app de escritorio.
+
+Condiciones para que E7 pase en producción:
+
+1. Fijar la imagen a una versión ≥ 0.19.0 (o su digest) en vez de `latest`, y revisar esta lista antes de cada actualización.
+2. No publicar puertos de Hermes ni activar `API_SERVER_HOST`, el panel web ni webhooks.
+3. No instalar entradas del catálogo de MCP; solo servidores propios por URL.
+4. Apagar las herramientas que no usemos, en especial ejecución de código.
+
+Versión probada: (anotar con `docker exec hermes-prueba hermes --version`).
 
 ## Puntaje
 
