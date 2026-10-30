@@ -65,11 +65,14 @@ def preguntar(
     conversacion: list[dict[str, str]],
 ) -> RespuestaGuia:
     """Una llamada a Claude con instrucciones fijas (cacheadas) y el contexto del día."""
+    extra: dict[str, Any] = {}
+    if "haiku" not in modelo:
+        # Haiku no tiene respaldo en el servidor y rechaza `fallbacks` con un 400.
+        extra = {"betas": ["server-side-fallback-2026-07-01"], "fallbacks": "default"}
     respuesta = mensajes_api.create(
         model=modelo,
         max_tokens=16000,
-        betas=["server-side-fallback-2026-07-01"],
-        fallbacks="default",
+        **extra,
         output_config={"effort": esfuerzo},
         system=[
             {"type": "text", "text": INSTRUCCIONES, "cache_control": {"type": "ephemeral"}},

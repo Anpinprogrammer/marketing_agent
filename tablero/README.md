@@ -55,7 +55,7 @@ El puerto queda solo en `127.0.0.1`. Para que el equipo entre desde fuera hace f
 
 ## Secretos y costos
 
-- `ANTHROPIC_API_KEY`: créala en un workspace de Console solo para el tablero, con límite de gasto mensual. La guía usa `claude-opus-5-5` con esfuerzo `low`; se cambia con `TABLERO_MODELO` y `TABLERO_ESFUERZO`.
+- `ANTHROPIC_API_KEY`: créala en un workspace de Console solo para el tablero, con límite de gasto mensual. La guía usa `claude-haiku-5-5` con esfuerzo `low`, que es barato y basta para ordenar tareas. Para algo más exigente se cambia con `TABLERO_MODELO` (por ejemplo `claude-opus-5-5`) y `TABLERO_ESFUERZO`.
 - `GITHUB_TOKEN`: token *fine-grained* limitado a este repositorio, con permiso de escritura en Contents y Pull requests.
 
 ## Pendiente
