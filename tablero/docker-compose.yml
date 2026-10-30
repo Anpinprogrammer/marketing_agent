@@ -1,0 +1,32 @@
+# Uso: desde tablero/, con un .env copiado de .env.example
+#   docker compose up -d --build
+#   docker compose exec tablero python -m tablero.admin cargar-plan
+services:
+  tablero:
+    build:
+      context: ..
+      dockerfile: tablero/Dockerfile
+    env_file: .env
+    environment:
+      TABLERO_DB_URL: postgresql+psycopg://tablero:${POSTGRES_PASSWORD}@db:5432/tablero
+    ports:
+      - "127.0.0.1:8000:8000"
+    volumes:
+      - archivos:/datos/archivos
+    depends_on:
+      - db
+    restart: unless-stopped
+
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: tablero
+      POSTGRES_DB: tablero
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - pg:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  archivos:
+  pg:
