@@ -12,3 +12,4 @@ pruebas_motor/hermes/data/
 *.egg-info/
 pruebas_motor/hermes-marca2/data/
 pruebas_motor/registro-marca2/
+pruebas_motor/managed_agents/ids.json
