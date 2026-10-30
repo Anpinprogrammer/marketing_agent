@@ -7,6 +7,7 @@ El plan y los criterios de cada semana están en el documento "Plan por semanas"
 ## Contenido actual
 
 - `pruebas_motor/`: kit para la prueba de 2 días del motor (tareas C01 y C02).
+- `tablero/`: tablero del equipo con evidencias al repo y guía con Claude (ver `tablero/README.md`).
 
 ## Desarrollo
 
