@@ -56,8 +56,8 @@ En la prueba se hizo copiando la carpeta y cambiando nombres con `sed`. La plant
 
 | | E1 | E2 | E3 | E4 | E5 | E6 | E7 |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Estado | pasa | pasa con configuración | pendiente | pasa | pasa con configuración | pasa | pasa con condiciones |
-| Nota | T2 | T4 | Se probó por OpenRouter; falta verificar con llave de Anthropic Console | Memoria (T5) y tareas programadas (T6) sobreviven reinicio y mudanza de equipo | T5 | Lo pone el proveedor (límite de la llave), no Hermes. T8 | Licencia MIT (uso comercial permitido). Avisos de seguridad revisados el 29 de octubre: ver sección siguiente |
+| Estado | pasa | pasa con configuración | pasa (falta ver el gasto en Console) | pasa | pasa con configuración | pasa | pasa con condiciones |
+| Nota | T2 | T4 | 30 de octubre, Mac mini: el registro de `agent.log` muestra `provider=anthropic model=claude-sonnet-5` y una llamada directa a la API (id `msg_…`, 1,4 s). `auth.json` solo guarda llaves de API tomadas del `.env`, sin login OAuth de suscripción. Pendiente: confirmar el gasto en Console → Usage del workspace `sam-agente-pruebas` (Console tarda en reflejarlo). Un mensaje de 4 palabras envió unas 20.000 tokens de entrada (kit, instrucciones y herramientas en cada turno): pesa en el puntaje de costo | Memoria (T5) y tareas programadas (T6) sobreviven reinicio y mudanza de equipo | T5 | Lo pone el proveedor (límite de la llave), no Hermes. T8 | Licencia MIT (uso comercial permitido). Avisos de seguridad revisados el 29 de octubre: ver sección siguiente |
 
 ## Avisos de seguridad (E7)
 
