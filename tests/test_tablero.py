@@ -54,7 +54,7 @@ def _config(tmp_path: Path, github: bool = True) -> Config:
         github_token="token" if github else None,
         github_repo="dueno/repo",
         github_rama_base="main",
-        modelo_guia="claude-opus-5-5",
+        modelo_guia="claude-haiku-5-5",
         esfuerzo_guia="low",
         zona_horaria="America/Bogota",
     )
@@ -213,12 +213,18 @@ def test_guia_recibe_la_bitacora_del_equipo(entorno: Any) -> None:
     )
     assert r.json() == {"texto": "Empieza por B07."}
     llamada = falsa.llamadas[0]
-    assert llamada["model"] == "claude-opus-5-5"
-    assert llamada["fallbacks"] == "default"
+    assert llamada["model"] == "claude-haiku-5-5"
+    assert "fallbacks" not in llamada
     contexto = json.loads(llamada["system"][1]["text"].split("\n", 1)[1])
     assert contexto["persona"]["nombre"] == "Andrés"
     assert any("A01" in b["texto"] and b["quien"] == "Laura" for b in contexto["bitacoraDelEquipo"])
     assert all(t["id"][0] != "A" for t in contexto["misTareasAbiertas"])
+
+
+def test_guia_con_opus_pide_respaldo_en_servidor() -> None:
+    falsa = GuiaFalsa()
+    guia.preguntar(falsa, "claude-opus-5-5", "low", {}, [{"role": "user", "content": "x"}])
+    assert falsa.llamadas[0]["fallbacks"] == "default"
 
 
 def test_guia_rechazada() -> None:

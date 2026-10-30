@@ -32,7 +32,7 @@ def cargar() -> Config:
         github_token=os.environ.get("GITHUB_TOKEN") or None,
         github_repo=os.environ.get("TABLERO_GITHUB_REPO", "Anpinprogrammer/marketing_agent"),
         github_rama_base=os.environ.get("TABLERO_GITHUB_RAMA_BASE", "main"),
-        modelo_guia=os.environ.get("TABLERO_MODELO", "claude-opus-5-5"),
+        modelo_guia=os.environ.get("TABLERO_MODELO", "claude-haiku-5-5"),
         esfuerzo_guia=os.environ.get("TABLERO_ESFUERZO", "low"),
         zona_horaria=os.environ.get("TABLERO_ZONA", "America/Bogota"),
     )
