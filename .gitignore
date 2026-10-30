@@ -13,3 +13,5 @@ pruebas_motor/hermes/data/
 pruebas_motor/hermes-marca2/data/
 pruebas_motor/registro-marca2/
 pruebas_motor/managed_agents/ids.json
+tablero.db
+tablero_archivos/
