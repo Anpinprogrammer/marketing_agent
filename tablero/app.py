@@ -117,7 +117,7 @@ def crear_app(
     if repo is None and cfg.github_token:
         repo = RepoGitHub(cfg.github_token, cfg.github_repo, cfg.github_rama_base)
 
-    app = FastAPI(title="Tablero SAM")
+    app = FastAPI(title="Tablero ADJ Marketing")
 
     def obtener_sesion() -> Iterator[Session]:
         with fabrica() as s:
